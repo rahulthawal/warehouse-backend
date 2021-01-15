@@ -6,9 +6,9 @@ const getLocationData = (request, response) => {
   db.select('*').from('location')
     .then(locationList => {
       if(locationList.length){
-        response.json(locationList)
+        response.json({data:locationList})
       } else {
-        response.json({data: 'false'})
+        response.json({data: []})
       }
     })
     .catch(err => response.status(400).json({dbError: 'Database Error'}))

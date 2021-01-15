@@ -6,9 +6,9 @@ const getProductData = (request, response) => {
   db.select('*').from('product')
     .then(productList => {
       if(productList.length){
-        response.json(productList)
+        response.json({data:productList})
       } else {
-        response.json({data: 'false'})
+        response.json({data: []})
       }
     })
     .catch(err => response.status(400).json({dbError: 'Database Error'}))
@@ -40,7 +40,10 @@ const deleteProductData = (request, response) => {
     .then(() => {
       response.json({delete: 'true'})
     })
-    .catch(err => response.status(400).json({dbError: 'Database Error'}))
+    .catch(err => {
+      console.log(err);
+      response.status(400).json({dbError: 'Database Error'})
+    })
 }
 
 module.exports = {

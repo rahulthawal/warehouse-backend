@@ -3,12 +3,12 @@ var db = require('../dbconfig/database.config')
 
 const getMovementData = (request, response) => {
 
-  db.select('*').from('product movement')
+  db.select('*').from('product_movement')
     .then(movementList => {
       if(movementList.length){
-        response.json(movementList)
+        response.json({data:movementList})
       } else {
-        response.json({data: 'false'})
+        response.json({data: []})
       }
     })
     .catch(err => response.status(400).json({dbError: 'Database Error'}))
@@ -16,7 +16,7 @@ const getMovementData = (request, response) => {
 
 const postMovementData = (request, response) => {
   const { productid, timestamp, fromlocation, tolocation } = request.body
-  db('product movement').insert({ productid, timestamp, fromlocation, tolocation })
+  db('product_movement').insert({ productid, timestamp, fromlocation, tolocation })
     .returning('*')
     .then(item => {
       response.json(item)
@@ -26,7 +26,7 @@ const postMovementData = (request, response) => {
 
 const putMovementData = (request, response) => {
   const { movementid, timestamp, fromlocation, tolocation, qty } = request.body
-  db('product movement').where({movementid}).update({ timestamp, fromlocation, tolocation, qty })
+  db('product_movement').where({movementid}).update({ timestamp, fromlocation, tolocation, qty })
     .returning('*')
     .then(item => {
       response.json(item)
@@ -36,7 +36,7 @@ const putMovementData = (request, response) => {
 
 const deleteMovementData = (request, response) => {
   const { movementid } = request.body
-  db('product movement').where({movementid}).del()
+  db('product_movement').where({movementid}).del()
     .then(() => {
       response.json({delete: 'true'})
     })

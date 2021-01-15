@@ -24,7 +24,7 @@ require("./routes/product.routes")(app);
 require("./routes/location.routes")(app);
 
 // Movement Routes
-require("./routes/location.routes")(app);
+require("./routes/movement.routes")(app);
 
 // Warehouse Server Main route
 app.get("/", (request, response) => {
