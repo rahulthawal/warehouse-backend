@@ -4,9 +4,9 @@ var db = require('../dbconfig/database.config')
 const getLocationData = (request, response) => {
 
   db.select('*').from('location')
-    .then(productList => {
-      if(productList.length){
-        response.json(productList)
+    .then(locationList => {
+      if(locationList.length){
+        response.json(locationList)
       } else {
         response.json({data: 'false'})
       }

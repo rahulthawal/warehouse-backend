@@ -9,10 +9,10 @@ module.exports = app => {
   // Create a new Location
   router.post("/", location.postLocationData);
 
-  // Update a Location with id
+  // Update a Location with locationid
   router.put("/", location.putLocationData);
 
-  // Delete a Location with id
+  // Delete a Location with locationid
   router.delete("/", location.deleteLocationData);
 
   app.use('/api/location', router);

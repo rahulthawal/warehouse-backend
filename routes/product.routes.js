@@ -9,10 +9,10 @@ module.exports = app => {
   // Create a new product
   router.post("/", product.postProductData);
 
-  // Update a product with id
+  // Update a product with productid
   router.put("/", product.putProductData);
 
-  // Delete a product with id
+  // Delete a product with productid
   router.delete("/", product.deleteProductData);
 
   app.use('/api/product', router);
